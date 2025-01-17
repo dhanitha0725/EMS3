@@ -1,88 +1,41 @@
 package com.example.EmployeeManagementSystem.Entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="employee")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Employee {
-
     @Id
     @Column(name = "employee_id", length = 45)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int employeeid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int employeeId;
 
     @Column(name = "employee_name", length = 255)
-    private String employeename;
-
-    @Column(name = "email", length = 255)
-    private String email;
+    private String employeeName;
 
     @Column(name = "phone", length = 10)
-    private int phone;
+    private String phone;
 
-    @Column(name = "password", length = 255)
-    private String password;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
-
-    public Employee() {
-    }
-
-    public Employee(int employeeid, String employeename, String email, int phone, String password) {
-        this.employeeid = employeeid;
-        this.employeename = employeename;
-        this.email = email;
+    public Employee(String employeename, String phone) {
+        this.employeeName = employeename;
         this.phone = phone;
-        this.password = password;
-    }
-
-    public int getEmployeeid() {
-        return employeeid;
-    }
-
-    public void setEmployeeid(int employeeid) {
-        this.employeeid = employeeid;
-    }
-
-    public String getEmployeename() {
-        return employeename;
-    }
-
-    public void setEmployeename(String employeename) {
-        this.employeename = employeename;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "employeeid=" + employeeid +
-                ", employeename='" + employeename + '\'' +
-                ", email='" + email + '\'' +
+                ", employeename='" + employeeName + '\'' +
                 ", phone=" + phone +
-                ", password='" + password + '\'' +
                 '}';
     }
 }
