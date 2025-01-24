@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-
 public class EmployeeIMPL implements EmployeeService {
 
     @Autowired
@@ -41,7 +40,6 @@ public class EmployeeIMPL implements EmployeeService {
                 employeeDTO.getFirstName(),
                 employeeDTO.getLastName(),
                 employeeDTO.getAddress(),
-                employeeDTO.getEmail(),
                 employeeDTO.getPhone()
         );
 

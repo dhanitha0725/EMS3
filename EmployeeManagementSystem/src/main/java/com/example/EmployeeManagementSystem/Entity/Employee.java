@@ -32,7 +32,7 @@ public class Employee {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    public Employee(String firstName, String lastName, String address, String email, String phone) {
+    public Employee(String firstName, String lastName, String address, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
