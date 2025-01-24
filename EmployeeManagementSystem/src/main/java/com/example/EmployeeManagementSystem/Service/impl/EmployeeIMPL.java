@@ -11,12 +11,8 @@ import com.example.EmployeeManagementSystem.Service.EmployeeService;
 import com.example.EmployeeManagementSystem.response.LoginResponse;
 import com.example.EmployeeManagementSystem.shared.ApplicationConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
-import java.util.Optional;
 
 @Service
 
@@ -42,9 +38,14 @@ public class EmployeeIMPL implements EmployeeService {
         Account savedAccount = accountRepository.save(account);
 
         Employee employee = new Employee(
-                employeeDTO.getEmployeeName(),
+                employeeDTO.getFirstName(),
+                employeeDTO.getLastName(),
+                employeeDTO.getAddress(),
+                employeeDTO.getEmail(),
                 employeeDTO.getPhone()
         );
+
+        System.out.println(employeeDTO.getFirstName() + " " + employeeDTO.getLastName());
 
         employee.setAccount(savedAccount);
         employeeRepo.save(employee);

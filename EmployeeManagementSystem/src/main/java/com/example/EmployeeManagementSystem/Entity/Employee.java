@@ -16,8 +16,14 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeId;
 
-    @Column(name = "employee_name", length = 255)
-    private String employeeName;
+    @Column(name = "first_name", length = 255)
+    private String firstName;
+
+    @Column(name = "last_name", length = 255)
+    private String lastName;
+
+    @Column(name = "address", length = 255)
+    private String address;
 
     @Column(name = "phone", length = 10)
     private String phone;
@@ -26,16 +32,10 @@ public class Employee {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    public Employee(String employeename, String phone) {
-        this.employeeName = employeename;
+    public Employee(String firstName, String lastName, String address, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
         this.phone = phone;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                ", employeename='" + employeeName + '\'' +
-                ", phone=" + phone +
-                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.EmployeeManagementSystem.Dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,27 +10,20 @@ import lombok.Setter;
 @Data
 public class EmployeeDTO {
 
+    @JsonProperty("employee_id")
     private int employeeId;
-    private String employeeName;
+
+    @JsonProperty("first_name")
+    private String firstName;
+
+    @JsonProperty("last_name")
+    private String lastName;
+
+    private String address;
+
     private String email;
+
     private String phone;
+
     private String password;
-
-//    public EmployeeDTO(int employeeId, String employeeName, String email, int phone, String password) {
-//        this.employeeId = employeeId;
-//        this.employeeName = employeeName;
-//        this.email = email;
-//        this.phone = phone;
-//        this.password = password;
-//    }
-
-//    @Override
-//    public String toString() {
-//        return "EmployeeDTO{" +
-//                "employeeid=" + employeeId +
-//                ", employeename='" + employeeName + '\'' +
-//                ", email='" + email + '\'' +
-//                ", password='" + password + '\'' +
-//                '}';
-//    }
 }
