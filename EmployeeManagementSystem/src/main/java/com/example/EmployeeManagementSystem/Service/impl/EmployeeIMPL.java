@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeIMPL implements EmployeeService {
 
@@ -125,5 +127,28 @@ public class EmployeeIMPL implements EmployeeService {
         }
 
     }
+
+    @Override
+    public Employee getEmployeeById(int employeeId) {
+        return employeeRepo.findById(employeeId).orElseThrow(() ->
+                new RuntimeException("Employee not found for Employee ID: " + employeeId)
+        );
+    }
+
+    @Override
+    public List<Employee> getEmployeesByFirstName(String firstName) {
+        return employeeRepo.findEmployeeByFirstName(firstName);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByLastName(String lastName) {
+        return employeeRepo.findEmployeeByLastName(lastName);
+    }
+
+//    @Override
+//    public Employee getEmployeesByEmail(String email) {
+//        return employeeRepo.findEmployeeByEmail(email);
+//    }
+
 
 }
