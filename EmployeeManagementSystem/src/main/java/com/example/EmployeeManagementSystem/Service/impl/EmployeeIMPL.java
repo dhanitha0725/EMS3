@@ -1,6 +1,7 @@
 package com.example.EmployeeManagementSystem.Service.impl;
 
 import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
+import com.example.EmployeeManagementSystem.Dto.GetEmployeeDTO;
 import com.example.EmployeeManagementSystem.Dto.LoginDTO;
 import com.example.EmployeeManagementSystem.Entity.Account;
 import com.example.EmployeeManagementSystem.Entity.Employee;
@@ -10,12 +11,21 @@ import com.example.EmployeeManagementSystem.Service.EmployeeService;
 
 import com.example.EmployeeManagementSystem.response.LoginResponse;
 import com.example.EmployeeManagementSystem.shared.ApplicationConstants;
+import io.swagger.models.Response;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+
 @Service
 public class EmployeeIMPL implements EmployeeService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     private EmployeeRepo employeeRepo;
@@ -126,4 +136,33 @@ public class EmployeeIMPL implements EmployeeService {
 
     }
 
+    @Override
+    public List<GetEmployeeDTO> getAllEmployees() {
+        String jpql = "SELECT e.employeeId, e.firstName, e.lastName, e.address, e.phone FROM Employee e";
+
+        // Use jakarta.persistence.Query
+        jakarta.persistence.Query query = entityManager.createQuery(jpql);
+
+        // Fetch results
+        List<Object[]> results = query.getResultList();
+
+        // Map results to DTO
+        List<GetEmployeeDTO> employeeList = new ArrayList<>();
+        for (Object[] result : results) {
+            GetEmployeeDTO dto = new GetEmployeeDTO(
+                    (Integer) result[0],  // empId
+                    (String) result[1],  // firstName
+                    (String) result[2],  // lastName
+                    (String) result[3],  // address
+                    (String) result[4]   // phone
+            );
+            employeeList.add(dto);
+        }
+
+        if (employeeList.isEmpty()) {
+            return Collections.emptyList();
+        } else {
+            return employeeList;
+        }
+    }
 }
