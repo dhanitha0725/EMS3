@@ -77,4 +77,43 @@ public class EmployeeIMPL implements EmployeeService {
 
     }
 
+    @Override
+    public String updateEmployee(EmployeeDTO employeeDTO, int employeeId) {
+        Employee employee = employeeRepo.findById(employeeId).orElseThrow(() ->
+                new RuntimeException("Employee not found"));
+
+        if (employeeDTO.getFirstName() != null && !employeeDTO.getFirstName().isEmpty()) {
+            employee.setFirstName(employeeDTO.getFirstName());
+        }
+
+        if (employeeDTO.getLastName() != null && !employeeDTO.getLastName().isEmpty()) {
+            employee.setLastName(employeeDTO.getLastName());
+        }
+
+        if (employeeDTO.getAddress() != null && !employeeDTO.getAddress().isEmpty()) {
+            employee.setAddress(employeeDTO.getAddress());
+        }
+
+        if (employeeDTO.getPhone() != null && !employeeDTO.getPhone().isEmpty()) {
+            employee.setPhone(employeeDTO.getPhone());
+        }
+
+        Account account = employee.getAccount();
+        if (account != null) {
+            if (employeeDTO.getEmail() != null && !employeeDTO.getEmail().isEmpty()) {
+                account.setEmail(employeeDTO.getEmail());
+            }
+            if (employeeDTO.getPassword() != null && !employeeDTO.getPassword().isEmpty()) {
+                account.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
+            }
+            accountRepository.save(account);
+        }else {
+            throw new RuntimeException("Account not found for Employee ID: "+ employeeId);
+        }
+
+        employeeRepo.save(employee);
+
+        return "Employee Updated Successfully";
+    }
+
 }

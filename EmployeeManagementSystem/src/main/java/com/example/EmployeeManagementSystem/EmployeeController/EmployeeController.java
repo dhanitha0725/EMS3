@@ -4,6 +4,7 @@ import com.example.EmployeeManagementSystem.Dto.LoginDTO;
 import com.example.EmployeeManagementSystem.Service.EmployeeService;
 import com.example.EmployeeManagementSystem.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,4 +31,18 @@ public class EmployeeController {
         LoginResponse loginResponse = employeeService.loginEmployee(loginDTO);
         return ResponseEntity.ok(loginResponse);
     }
+
+    @PutMapping("/update/{employeeId}")
+    public ResponseEntity<?> updateEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable int employeeId){
+        try {
+            String responseMessage = employeeService.updateEmployee(employeeDTO,employeeId);
+            return ResponseEntity.ok(responseMessage);
+        }catch (RuntimeException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
