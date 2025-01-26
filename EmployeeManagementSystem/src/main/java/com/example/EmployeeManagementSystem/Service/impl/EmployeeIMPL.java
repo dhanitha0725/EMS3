@@ -116,4 +116,14 @@ public class EmployeeIMPL implements EmployeeService {
         return "Employee Updated Successfully";
     }
 
+    @Override
+    public void deleleEmployee(int employeeId) {
+        if (employeeRepo.findById(employeeId).isPresent()) {
+            employeeRepo.deleteById(employeeId);
+        } else {
+            throw new RuntimeException("Employee not found for Employee ID: "+ employeeId);
+        }
+
+    }
+
 }
