@@ -25,5 +25,11 @@ public class GetEmployeeDTO {
 
     private String phone;
 
-    public GetEmployeeDTO(int employeeId, String firstName, String lastName, String address , String phone ) {}
+    public GetEmployeeDTO(int employeeId, String firstName, String lastName, String address , String phone ) {
+        this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+    }
 }
