@@ -5,6 +5,7 @@ import com.example.EmployeeManagementSystem.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class EmployeeController {
         return employeeService.addEmployee(employeeDTO);
     }
 
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_ADMIN')")
     @PutMapping("/update/{employeeId}")
     public ResponseEntity<?> updateEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable int employeeId){
         try {
@@ -37,12 +39,14 @@ public class EmployeeController {
         }
     }
 
+    @PreAuthorize( "hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete/{employeeId}")
     public ResponseEntity<?> deleteEmployee(@PathVariable int employeeId){
         employeeService.deleleEmployee(employeeId);
         return ResponseEntity.ok().body("Employee with ID " + employeeId + " has been deleted successfully.");
     }
 
+    @PreAuthorize( "hasRole('ROLE_ADMIN')")
     @GetMapping("/getEmployeeById/{employeeId}")
     public ResponseEntity<?> getEmployeeById(@PathVariable int employeeId){
 
@@ -54,6 +58,7 @@ public class EmployeeController {
         }
     }
 
+    @PreAuthorize( "hasRole('ROLE_ADMIN')")
     @GetMapping("/getEmployeesByFirstName/{firstName}")
     public ResponseEntity<?> getEmployeesByFirstName(@PathVariable String firstName){
         try {
@@ -64,6 +69,7 @@ public class EmployeeController {
         }
     }
 
+    @PreAuthorize( "hasRole('ROLE_ADMIN')")
     @GetMapping("/getEmployeesByLastName/{lastName}")
     public ResponseEntity<?> getEmployeesByLastName(@PathVariable String lastName){
         try {
