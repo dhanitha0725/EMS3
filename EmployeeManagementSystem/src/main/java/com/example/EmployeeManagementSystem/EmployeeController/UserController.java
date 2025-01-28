@@ -1,5 +1,6 @@
 package com.example.EmployeeManagementSystem.EmployeeController;
 
+import com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto;
 import com.example.EmployeeManagementSystem.Entity.Account;
 import com.example.EmployeeManagementSystem.Service.AuthenticationService;
 import com.example.EmployeeManagementSystem.Service.UserService;
@@ -33,9 +34,8 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Account>> allUsers() {
-        List <Account> users = userService.allUsers();
-
-        return ResponseEntity.ok(users);
+    public ResponseEntity<List<EmployeeResponseDto>> getAllEmployees() {
+        List<EmployeeResponseDto> employees = userService.getAllEmployees();
+        return ResponseEntity.ok(employees);
     }
 }
