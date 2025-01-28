@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class GeneralException extends RuntimeException {
-    private int code;
+    private final int code;
 
     public GeneralException(String message) {
         this(500, message);

@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface AuthenticationService {
     Account authenticate(LoginDTO input);
 
-    public Optional<?> getCurrentUser();
+    Optional<?> getCurrentUser();
 }
