@@ -20,4 +20,5 @@ public interface EmployeeService {
     List<Employee> getEmployeesByLastName(String lastName);
 
 
+    Employee getEmployeesByEmail(String email);
 }
