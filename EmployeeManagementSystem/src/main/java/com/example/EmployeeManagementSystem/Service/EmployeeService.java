@@ -1,9 +1,7 @@
 package com.example.EmployeeManagementSystem.Service;
 
 import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
-import com.example.EmployeeManagementSystem.Dto.LoginDTO;
 import com.example.EmployeeManagementSystem.Entity.Employee;
-import com.example.EmployeeManagementSystem.response.LoginResponse;
 
 import java.util.List;
 

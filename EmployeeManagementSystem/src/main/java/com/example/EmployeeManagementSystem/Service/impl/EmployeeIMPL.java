@@ -1,14 +1,12 @@
 package com.example.EmployeeManagementSystem.Service.impl;
 
 import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
-import com.example.EmployeeManagementSystem.Dto.LoginDTO;
 import com.example.EmployeeManagementSystem.Entity.Account;
 import com.example.EmployeeManagementSystem.Entity.Employee;
 import com.example.EmployeeManagementSystem.Repo.AccountRepository;
 import com.example.EmployeeManagementSystem.Repo.EmployeeRepo;
 import com.example.EmployeeManagementSystem.Service.EmployeeService;
 
-import com.example.EmployeeManagementSystem.response.LoginResponse;
 import com.example.EmployeeManagementSystem.shared.ApplicationConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

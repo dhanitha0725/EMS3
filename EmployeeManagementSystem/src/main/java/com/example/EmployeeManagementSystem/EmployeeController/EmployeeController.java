@@ -1,9 +1,7 @@
 package com.example.EmployeeManagementSystem.EmployeeController;
 import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
-import com.example.EmployeeManagementSystem.Dto.LoginDTO;
 import com.example.EmployeeManagementSystem.Entity.Employee;
 import com.example.EmployeeManagementSystem.Service.EmployeeService;
-import com.example.EmployeeManagementSystem.response.LoginResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +22,7 @@ public class EmployeeController {
     @PostMapping(path = "/save")
     public String saveEmployee(@RequestBody EmployeeDTO employeeDTO)
     {
-        String id = employeeService.addEmployee(employeeDTO);
-        return id;
+        return employeeService.addEmployee(employeeDTO);
     }
 
     @PutMapping("/update/{employeeId}")
