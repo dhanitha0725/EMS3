@@ -74,17 +74,17 @@ public class EmployeeController {
         }
     }
 
-//    @GetMapping("/getEmployeesByEmail/{email}")
-//    public ResponseEntity<?> getEmployeesByEmail(@PathVariable String email){
-//
-//        try {
-//            Employee employees = employeeService.getEmployeesByEmail(email);
-//            return ResponseEntity.ok(employees);
-//        }catch (Exception e){
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with email " + email + " not found.");
-//        }
-//
-//    }
+    @GetMapping("/getEmployeesByEmail/{email}")
+    public ResponseEntity<?> getEmployeesByEmail(@PathVariable String email){
+
+        try {
+            Employee employees = employeeService.getEmployeesByEmail(email);
+            return ResponseEntity.ok(employees);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with email " + email + " not found.");
+        }
+
+    }
 
 
 }
