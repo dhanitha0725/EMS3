@@ -5,6 +5,7 @@ import com.example.EmployeeManagementSystem.Entity.Account;
 import com.example.EmployeeManagementSystem.Service.AuthenticationService;
 import com.example.EmployeeManagementSystem.Service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,7 @@ public class UserController {
         return ResponseEntity.notFound().build();
     }
 
+    @PreAuthorize( "hasRole('ROLE_ADMIN')")
     @GetMapping("/")
     public ResponseEntity<List<EmployeeResponseDto>> getAllEmployees() {
         List<EmployeeResponseDto> employees = userService.getAllEmployees();

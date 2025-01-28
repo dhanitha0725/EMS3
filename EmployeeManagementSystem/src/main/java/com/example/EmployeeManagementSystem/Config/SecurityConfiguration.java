@@ -43,7 +43,8 @@ public class SecurityConfiguration {
 
                 // Configure authorization rules
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/employee/save").permitAll()
                         .anyRequest().authenticated()      // Secure all other endpoints
                 )
 
