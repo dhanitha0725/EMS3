@@ -11,8 +11,6 @@ public interface EmployeeService {
 
     String addEmployee(EmployeeDTO employeeDTO);
 
-    LoginResponse loginEmployee(LoginDTO loginDTO);
-
     String updateEmployee(EmployeeDTO employeeDTO, int employeeId);
 
     void deleleEmployee(int employeeId);

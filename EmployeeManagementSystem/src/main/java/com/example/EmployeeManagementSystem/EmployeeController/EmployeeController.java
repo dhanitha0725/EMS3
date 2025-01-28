@@ -28,13 +28,6 @@ public class EmployeeController {
         return id;
     }
 
-    @PostMapping(path = "/login")
-    public ResponseEntity<?> loginEmployee(@RequestBody LoginDTO loginDTO)
-    {
-        LoginResponse loginResponse = employeeService.loginEmployee(loginDTO);
-        return ResponseEntity.ok(loginResponse);
-    }
-
     @PutMapping("/update/{employeeId}")
     public ResponseEntity<?> updateEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable int employeeId){
         try {

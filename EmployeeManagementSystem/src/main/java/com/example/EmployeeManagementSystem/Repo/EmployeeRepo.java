@@ -10,8 +10,7 @@ import java.util.Optional;
 
 @EnableJpaRepositories
 @Repository
-public interface EmployeeRepo extends JpaRepository<Employee,Integer>
-{
+public interface EmployeeRepo extends JpaRepository<Employee,Integer> {
     List<Employee> findEmployeeByFirstName(String firstName);
 
     List<Employee> findEmployeeByLastName(String lastName);
