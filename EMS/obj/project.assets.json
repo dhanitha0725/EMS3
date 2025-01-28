@@ -99,23 +99,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dhani\\.nuget\\packages\\": {},
+    "C:\\Users\\Mishel Fernando\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dhani\\source\\repos\\EMS\\EMS\\EMS.csproj",
+      "projectUniqueName": "D:\\UOK Work\\Year 2 semester 2\\INTE 22242 - Web Application Development 2\\Assignment02\\EMS3\\EMS\\EMS.csproj",
       "projectName": "EMS",
-      "projectPath": "C:\\Users\\dhani\\source\\repos\\EMS\\EMS\\EMS.csproj",
-      "packagesPath": "C:\\Users\\dhani\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dhani\\source\\repos\\EMS\\EMS\\obj\\",
+      "projectPath": "D:\\UOK Work\\Year 2 semester 2\\INTE 22242 - Web Application Development 2\\Assignment02\\EMS3\\EMS\\EMS.csproj",
+      "packagesPath": "C:\\Users\\Mishel Fernando\\.nuget\\packages\\",
+      "outputPath": "D:\\UOK Work\\Year 2 semester 2\\INTE 22242 - Web Application Development 2\\Assignment02\\EMS3\\EMS\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\dhani\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mishel Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -172,7 +172,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

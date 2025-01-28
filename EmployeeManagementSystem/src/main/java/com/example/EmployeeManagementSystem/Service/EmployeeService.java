@@ -8,5 +8,4 @@ public interface EmployeeService {
 
     String addEmployee(EmployeeDTO employeeDTO);
 
-    LoginResponse loginEmployee(LoginDTO loginDTO);
 }

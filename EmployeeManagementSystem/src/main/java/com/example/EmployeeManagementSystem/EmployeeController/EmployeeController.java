@@ -23,11 +23,4 @@ public class EmployeeController {
         String id = employeeService.addEmployee(employeeDTO);
         return id;
     }
-
-    @PostMapping(path = "/login")
-    public ResponseEntity<?> loginEmployee(@RequestBody LoginDTO loginDTO)
-    {
-        LoginResponse loginResponse = employeeService.loginEmployee(loginDTO);
-        return ResponseEntity.ok(loginResponse);
-    }
 }

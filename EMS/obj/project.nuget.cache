@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CY3LqwvTVro=",
+  "dgSpecHash": "NivbcFZ3UvY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\dhani\\source\\repos\\EMS\\EMS\\EMS.csproj",
+  "projectFilePath": "D:\\UOK Work\\Year 2 semester 2\\INTE 22242 - Web Application Development 2\\Assignment02\\EMS3\\EMS\\EMS.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\dhani\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
+    "C:\\Users\\Mishel Fernando\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.21.0\\microsoft.visualstudio.azure.containers.tools.targets.1.21.0.nupkg.sha512"
   ],
   "logs": []
 }

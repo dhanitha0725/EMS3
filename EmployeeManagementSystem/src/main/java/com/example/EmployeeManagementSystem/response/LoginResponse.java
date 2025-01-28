@@ -1,38 +1,25 @@
 package com.example.EmployeeManagementSystem.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
 public class LoginResponse {
-    String message;
-    Boolean status;
 
-    public LoginResponse(String message, Boolean status) {
-        this.message = message;
-        this.status = status;
-    }
+    @JsonProperty("access_token")
+    private String accessToken;
 
-    public LoginResponse() {
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
+    @JsonProperty("expires_in")
+    private long expiresIn;
 
     @Override
     public String toString() {
         return "LoginResponse{" +
-                "message='" + message + '\'' +
-                ", status=" + status +
+                "token='" + accessToken + '\'' +
+                ", expiresIn=" + expiresIn +
                 '}';
     }
 }
+
