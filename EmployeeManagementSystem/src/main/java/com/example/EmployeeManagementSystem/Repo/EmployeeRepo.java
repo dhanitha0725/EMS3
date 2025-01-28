@@ -1,7 +1,9 @@
 package com.example.EmployeeManagementSystem.Repo;
 
+import com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto;
 import com.example.EmployeeManagementSystem.Entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +18,10 @@ public interface EmployeeRepo extends JpaRepository<Employee,Integer> {
     List<Employee> findEmployeeByLastName(String lastName);
 
     Optional<Employee> findByAccountId(int id);
+
+    @Query("SELECT new com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto(" +
+            "a.id, a.role, e.firstName, e.lastName, e.address, a.email, e.phone) " +
+            "FROM Account a JOIN Employee e ON a.id = e.account.id")
+    List<EmployeeResponseDto> findAllEmployeesAsDto();
+
 }
