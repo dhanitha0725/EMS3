@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeIMPL implements EmployeeService {
 
@@ -50,5 +52,103 @@ public class EmployeeIMPL implements EmployeeService {
 
         return "Registered an Employee Successfully";
     }
+
+    @Override
+    public LoginResponse  loginEmployee(LoginDTO loginDTO) {
+//        String msg = "";
+//        Employee employee1 = employeeRepo.findByEmail(loginDTO.getEmail());
+//        if (employee1 != null) {
+//            String password = loginDTO.getPassword();
+//            String encodedPassword = employee1.getPassword();
+//            Boolean isPwdRight = passwordEncoder.matches(password, encodedPassword);
+//            if (isPwdRight) {
+//                Optional<Employee> employee = employeeRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
+//                if (employee.isPresent()) {
+//                    return new LoginResponse("Login Success", true);
+//                } else {
+//                    return new LoginResponse("Login Failed", false);
+//                }
+//            } else {
+//
+//                return new LoginResponse("password Not Match", false);
+//            }
+//        }else {
+//            return new LoginResponse("Email not exits", false);
+//        }
+        return null;
+
+    }
+
+    @Override
+    public String updateEmployee(EmployeeDTO employeeDTO, int employeeId) {
+        Employee employee = employeeRepo.findById(employeeId).orElseThrow(() ->
+                new RuntimeException("Employee not found"));
+
+        if (employeeDTO.getFirstName() != null && !employeeDTO.getFirstName().isEmpty()) {
+            employee.setFirstName(employeeDTO.getFirstName());
+        }
+
+        if (employeeDTO.getLastName() != null && !employeeDTO.getLastName().isEmpty()) {
+            employee.setLastName(employeeDTO.getLastName());
+        }
+
+        if (employeeDTO.getAddress() != null && !employeeDTO.getAddress().isEmpty()) {
+            employee.setAddress(employeeDTO.getAddress());
+        }
+
+        if (employeeDTO.getPhone() != null && !employeeDTO.getPhone().isEmpty()) {
+            employee.setPhone(employeeDTO.getPhone());
+        }
+
+        Account account = employee.getAccount();
+        if (account != null) {
+            if (employeeDTO.getEmail() != null && !employeeDTO.getEmail().isEmpty()) {
+                account.setEmail(employeeDTO.getEmail());
+            }
+            if (employeeDTO.getPassword() != null && !employeeDTO.getPassword().isEmpty()) {
+                account.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
+            }
+            accountRepository.save(account);
+        }else {
+            throw new RuntimeException("Account not found for Employee ID: "+ employeeId);
+        }
+
+        employeeRepo.save(employee);
+
+        return "Employee Updated Successfully";
+    }
+
+    @Override
+    public void deleleEmployee(int employeeId) {
+        if (employeeRepo.findById(employeeId).isPresent()) {
+            employeeRepo.deleteById(employeeId);
+        } else {
+            throw new RuntimeException("Employee not found for Employee ID: "+ employeeId);
+        }
+
+    }
+
+    @Override
+    public Employee getEmployeeById(int employeeId) {
+        return employeeRepo.findById(employeeId).orElseThrow(() ->
+                new RuntimeException("Employee not found for Employee ID: " + employeeId)
+        );
+    }
+
+    @Override
+    public List<Employee> getEmployeesByFirstName(String firstName) {
+        return employeeRepo.findEmployeeByFirstName(firstName);
+    }
+
+    @Override
+    public List<Employee> getEmployeesByLastName(String lastName) {
+        return employeeRepo.findEmployeeByLastName(lastName);
+    }
+
+//    @Override
+//    public Employee getEmployeesByEmail(String email) {
+//        return employeeRepo.findEmployeeByEmail(email);
+//    }
+
 
 }
