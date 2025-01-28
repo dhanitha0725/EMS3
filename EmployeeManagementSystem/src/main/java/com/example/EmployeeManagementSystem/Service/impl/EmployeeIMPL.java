@@ -117,6 +117,11 @@ public class EmployeeIMPL implements EmployeeService {
         return employeeRepo.findEmployeeByLastName(lastName);
     }
 
+    @Override
+    public Employee getEmployeesByEmail(String email) {
+        return employeeRepo.findEmployeeByEmail(email);
+    }
+
 //    @Override
 //    public Employee getEmployeesByEmail(String email) {
 //        return employeeRepo.findEmployeeByEmail(email);

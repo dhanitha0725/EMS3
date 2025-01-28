@@ -5,6 +5,7 @@ import com.example.EmployeeManagementSystem.Entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,4 +25,7 @@ public interface EmployeeRepo extends JpaRepository<Employee,Integer> {
             "FROM Account a JOIN Employee e ON a.id = e.account.id")
     List<EmployeeResponseDto> findAllEmployeesAsDto();
 
+
+    @Query("SELECT e FROM Employee e WHERE e.account.email = :email")
+    Employee findEmployeeByEmail( @Param("email") String email);
 }
