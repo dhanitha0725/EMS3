@@ -8,6 +8,7 @@ import com.example.EmployeeManagementSystem.Repo.EmployeeRepo;
 import com.example.EmployeeManagementSystem.Service.EmployeeService;
 
 import com.example.EmployeeManagementSystem.shared.ApplicationConstants;
+import com.example.EmployeeManagementSystem.shared.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -95,7 +96,7 @@ public class EmployeeIMPL implements EmployeeService {
         if (employeeRepo.findById(employeeId).isPresent()) {
             employeeRepo.deleteById(employeeId);
         } else {
-            throw new RuntimeException("Employee not found for Employee ID: "+ employeeId);
+            throw new NotFoundException("Employee not found for Employee ID: "+ employeeId);
         }
 
     }
@@ -103,29 +104,38 @@ public class EmployeeIMPL implements EmployeeService {
     @Override
     public Employee getEmployeeById(int employeeId) {
         return employeeRepo.findById(employeeId).orElseThrow(() ->
-                new RuntimeException("Employee not found for Employee ID: " + employeeId)
+                new NotFoundException("Employee not found for Employee ID: " + employeeId)
         );
     }
 
     @Override
     public List<Employee> getEmployeesByFirstName(String firstName) {
-        return employeeRepo.findEmployeeByFirstName(firstName);
+        if (firstName != null && !firstName.trim().isEmpty()) {
+            return employeeRepo.findEmployeeByFirstName(firstName);
+        }else {
+            throw new NotFoundException("Employee like this" + firstName + "not found");
+        }
+
     }
 
     @Override
     public List<Employee> getEmployeesByLastName(String lastName) {
-        return employeeRepo.findEmployeeByLastName(lastName);
+        if (lastName != null && !lastName.trim().isEmpty()) {
+            return employeeRepo.findEmployeeByLastName(lastName);
+        }else {
+            throw new NotFoundException("Employee like this" + lastName + "not found");
+        }
     }
 
     @Override
     public Employee getEmployeesByEmail(String email) {
-        return employeeRepo.findEmployeeByEmail(email);
+        if (email != null && !email.trim().isEmpty()) {
+            return employeeRepo.findEmployeeByEmail(email);
+        }else {
+            throw new NotFoundException("Employee like this" + email + "not found");
+        }
     }
 
-//    @Override
-//    public Employee getEmployeesByEmail(String email) {
-//        return employeeRepo.findEmployeeByEmail(email);
-//    }
 
 
 }

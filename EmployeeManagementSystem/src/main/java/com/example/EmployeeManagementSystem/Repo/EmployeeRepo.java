@@ -2,6 +2,7 @@ package com.example.EmployeeManagementSystem.Repo;
 
 import com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto;
 import com.example.EmployeeManagementSystem.Entity.Employee;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @EnableJpaRepositories
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee,Integer> {
+
+
     List<Employee> findEmployeeByFirstName(String firstName);
 
     List<Employee> findEmployeeByLastName(String lastName);

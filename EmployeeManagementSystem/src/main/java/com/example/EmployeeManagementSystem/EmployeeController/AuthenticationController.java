@@ -5,6 +5,7 @@ import com.example.EmployeeManagementSystem.Entity.Account;
 import com.example.EmployeeManagementSystem.shared.security.JwtService;
 import com.example.EmployeeManagementSystem.Service.impl.AuthenticationServiceImpl;
 import com.example.EmployeeManagementSystem.response.LoginResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginDTO loginUserDto) {
+    public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginDTO loginUserDto) {
         Account authenticatedUser = authenticationServiceImpl.authenticate(loginUserDto);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);

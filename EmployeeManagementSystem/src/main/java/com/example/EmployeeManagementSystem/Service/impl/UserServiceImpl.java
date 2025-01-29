@@ -6,6 +6,7 @@ import com.example.EmployeeManagementSystem.Service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,7 +18,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<EmployeeResponseDto> getAllEmployees() {
-        return employeeRepo.findAllEmployeesAsDto();
+        List<EmployeeResponseDto> employees = employeeRepo.findAllEmployeesAsDto();
+
+        if (employees.isEmpty()) {
+            throw new NoSuchElementException("No employee found");
+        }else {
+            return employees;
+        }
     }
 
 }
