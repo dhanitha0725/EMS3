@@ -1,12 +1,14 @@
 package com.example.EmployeeManagementSystem.EmployeeController;
 
+import com.example.EmployeeManagementSystem.Dto.Response.EmployeeDetailsDTO;
 import com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto;
-import com.example.EmployeeManagementSystem.Entity.Account;
+import com.example.EmployeeManagementSystem.Entity.Employee;
 import com.example.EmployeeManagementSystem.Service.AuthenticationService;
 import com.example.EmployeeManagementSystem.Service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,5 +41,17 @@ public class UserController {
     public ResponseEntity<List<EmployeeResponseDto>> getAllEmployees() {
         List<EmployeeResponseDto> employees = userService.getAllEmployees();
         return ResponseEntity.ok(employees);
+    }
+
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE')")
+    @GetMapping("/getEmployeeById/{employeeId}")
+    public ResponseEntity<Optional<EmployeeDetailsDTO>> getEmployeeById(@PathVariable int employeeId) {
+
+        try {
+            Optional<EmployeeDetailsDTO> employeeDetails = userService.getEmployeeById(employeeId);
+            return ResponseEntity.ok(employeeDetails);
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }

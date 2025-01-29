@@ -51,17 +51,17 @@ public class EmployeeController {
         return ResponseEntity.ok().body("Employee with ID " + employeeId + " has been deleted successfully.");
     }
 
-    @PreAuthorize( "hasRole('ROLE_ADMIN')")
-    @GetMapping("/getEmployeeById/{employeeId}")
-    public ResponseEntity<Object> getEmployeeById(@PathVariable int employeeId){
-
-        try {
-             Employee employeeResponse = employeeService.getEmployeeById(employeeId);
-            return ResponseEntity.ok(employeeResponse);
-        }catch (RuntimeException e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with ID " + employeeId + " not found.");
-        }
-    }
+//    @PreAuthorize( "hasRole('ROLE_ADMIN')")
+//    @GetMapping("/getEmployeeById/{employeeId}")
+//    public ResponseEntity<Object> getEmployeeById(@PathVariable int employeeId){
+//
+//        try {
+//             Employee employeeResponse = employeeService.getEmployeeById(employeeId);
+//            return ResponseEntity.ok(employeeResponse);
+//        }catch (RuntimeException e){
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee with ID " + employeeId + " not found.");
+//        }
+//    }
 
     @PreAuthorize( "hasRole('ROLE_ADMIN')")
     @GetMapping("/getEmployeesByFirstName/{firstName}")
