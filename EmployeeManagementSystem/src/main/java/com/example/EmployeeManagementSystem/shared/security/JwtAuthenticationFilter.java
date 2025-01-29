@@ -1,5 +1,6 @@
 package com.example.EmployeeManagementSystem.shared.security;
 
+import com.example.EmployeeManagementSystem.shared.exceptions.GeneralException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,6 +50,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try {
             final String jwt = authHeader.substring(7);
+
+            // **Check if the token is invalidated**
+            if (!jwtService.isTokenValid(jwt)) {
+                // Send a 401 Unauthorized response
+                throw new GeneralException(401, "Token is invalidated. User is logged out.");
+            }
+
             final String userEmail = jwtService.extractUsername(jwt);
 
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

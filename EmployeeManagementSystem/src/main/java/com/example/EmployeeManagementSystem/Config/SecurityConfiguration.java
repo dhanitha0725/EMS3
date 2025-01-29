@@ -39,10 +39,10 @@ public class SecurityConfiguration {
         http
                 // Disable CSRF protection as the application is stateless and uses JWT
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())
-
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 // Configure authorization rules
                 .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/**").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/employee/save").permitAll()
                         .anyRequest().authenticated()      // Secure all other endpoints
@@ -68,10 +68,15 @@ public class SecurityConfiguration {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Define allowed origins for cross-origin requests
-        configuration.setAllowedOrigins(List.of("http://localhost:8090"));
+//        configuration.setAllowedOrigins(List.of("http://localhost:8090"));
+
+        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://127.0.0.1:5173"));
 
         // Define allowed HTTP methods
-        configuration.setAllowedMethods(List.of("GET", "POST"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "OPTIONS", "PUT", "DELETE"));
+
+        // Define allowed HTTP methods
+//        configuration.setAllowedMethods(List.of("GET", "POST"));
 
         // Define allowed headers in requests
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
