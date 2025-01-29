@@ -6,17 +6,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmployeeResponseDto {
-    private int id;
+    private int employeeId;
     private String email;
     private String role;
     private String firstName;
     private String lastName;
     private String address;
-
     private String phone;
 
-    public EmployeeResponseDto(int id, String role, String firstName, String lastName, String address, String email, String phone){
-        this.id = id;
+    public EmployeeResponseDto(int employeeId, String role, String firstName, String lastName, String address, String email, String phone){
+        this.employeeId = employeeId;
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -24,7 +24,7 @@ public interface EmployeeRepo extends JpaRepository<Employee,Integer> {
     Optional<Employee> findByAccountId(int id);
 
     @Query("SELECT new com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto(" +
-            "a.id, a.role, e.firstName, e.lastName, e.address, a.email, e.phone) " +
+            "e.employeeId, a.role, e.firstName, e.lastName, e.address, a.email, e.phone) " +
             "FROM Account a JOIN Employee e ON a.id = e.account.id")
     List<EmployeeResponseDto> findAllEmployeesAsDto();
 
