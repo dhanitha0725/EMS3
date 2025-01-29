@@ -110,12 +110,12 @@ public class EmployeeIMPL implements EmployeeService {
 
     }
 
-    @Override
-    public Employee getEmployeeById(int employeeId) {
-        return employeeRepo.findById(employeeId).orElseThrow(() ->
-                new NotFoundException("Employee not found for Employee ID: " + employeeId)
-        );
-    }
+//    @Override
+//    public Employee getEmployeeById(int employeeId) {
+//        return employeeRepo.findById(employeeId).orElseThrow(() ->
+//                new NotFoundException("Employee not found for Employee ID: " + employeeId)
+//        );
+//    }
 
     @Override
     public List<Employee> getEmployeesByFirstName(String firstName) {

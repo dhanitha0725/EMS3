@@ -1,8 +1,8 @@
 package com.example.EmployeeManagementSystem.Repo;
 
+import com.example.EmployeeManagementSystem.Dto.Response.EmployeeDetailsDTO;
 import com.example.EmployeeManagementSystem.Dto.Response.EmployeeResponseDto;
 import com.example.EmployeeManagementSystem.Entity.Employee;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -31,4 +31,9 @@ public interface EmployeeRepo extends JpaRepository<Employee,Integer> {
 
     @Query("SELECT e FROM Employee e WHERE e.account.email = :email")
     Employee findEmployeeByEmail( @Param("email") String email);
+
+    @Query("SELECT new com.example.EmployeeManagementSystem.Dto.Response.EmployeeDetailsDTO(" +
+            "e.firstName, e.lastName, e.address, a.email, e.phone, a.password) " +
+            "FROM Employee e JOIN e.account a WHERE e.employeeId = :employeeId")
+    Optional<EmployeeDetailsDTO> findEmployeeById(@Param("employeeId") int employeeId);
 }

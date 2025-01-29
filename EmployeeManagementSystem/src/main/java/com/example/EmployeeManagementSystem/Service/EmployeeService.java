@@ -2,6 +2,7 @@ package com.example.EmployeeManagementSystem.Service;
 
 import com.example.EmployeeManagementSystem.Dto.EmployeeDTO;
 import com.example.EmployeeManagementSystem.Entity.Employee;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -13,7 +14,8 @@ public interface EmployeeService {
 
     void deleleEmployee(int employeeId);
 
-    Employee getEmployeeById(int employeeId);
+
+//    Employee getEmployeeById(int employeeId);
 
     List<Employee> getEmployeesByFirstName(String firstName);
 
