@@ -29,6 +29,10 @@ public class EmployeeIMPL implements EmployeeService {
 
     @Override
     public String addEmployee(EmployeeDTO employeeDTO) {
+
+        if(accountRepository.existsByEmail(employeeDTO.getEmail())){
+            throw new RuntimeException("Employee already exists with this email: " + employeeDTO.getEmail());
+        }
         Account account = new Account(
                 employeeDTO.getEmail(),
                 this.passwordEncoder.encode(employeeDTO.getPassword()),
@@ -76,7 +80,12 @@ public class EmployeeIMPL implements EmployeeService {
         Account account = employee.getAccount();
         if (account != null) {
             if (employeeDTO.getEmail() != null && !employeeDTO.getEmail().isEmpty()) {
-                account.setEmail(employeeDTO.getEmail());
+                if(accountRepository.existsByEmail(employeeDTO.getEmail())){
+                    throw new RuntimeException("Employee already exists with this email: "+employeeDTO.getEmail());
+                }else {
+                    account.setEmail(employeeDTO.getEmail());
+                }
+
             }
             if (employeeDTO.getPassword() != null && !employeeDTO.getPassword().isEmpty()) {
                 account.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
