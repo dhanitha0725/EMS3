@@ -66,11 +66,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             // Return the EmployeeResponseDto
             return Optional.of(new EmployeeResponseDto(
                     account.getId(),
-                    account.getEmail(),
                     account.getRole(),
                     emp.getFirstName(),
                     emp.getLastName(),
                     emp.getAddress(),
+                    account.getEmail(),
                     emp.getPhone()
             ));
         }

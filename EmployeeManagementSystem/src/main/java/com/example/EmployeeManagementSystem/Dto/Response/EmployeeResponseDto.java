@@ -17,11 +17,11 @@ public class EmployeeResponseDto {
 
     public EmployeeResponseDto(int id, String role, String firstName, String lastName, String address, String email, String phone){
         this.id = id;
-        this.email = email;
         this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
+        this.email = email;
         this.phone = phone;
     }
 }
