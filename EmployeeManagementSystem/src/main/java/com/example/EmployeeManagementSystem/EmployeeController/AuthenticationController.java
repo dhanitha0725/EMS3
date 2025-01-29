@@ -34,4 +34,12 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(loginResponse);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@RequestHeader("Authorization") String token) {
+        String jwtToken = token.substring(7); // Remove "Bearer " prefix
+        jwtService.invalidateToken(jwtToken);// Implement this method in JwtService if you plan to blacklist tokens
+
+        return ResponseEntity.ok("Logout successful");
+    }
 }
