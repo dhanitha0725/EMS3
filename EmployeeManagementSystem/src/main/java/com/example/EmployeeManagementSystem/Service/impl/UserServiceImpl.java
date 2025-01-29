@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<EmployeeDetailsDTO> getEmployeeById(int employeeId) {;
+    public Optional<EmployeeDetailsDTO> getEmployeeById(int employeeId) {
 
         return employeeRepo.findEmployeeById(employeeId);
     }
