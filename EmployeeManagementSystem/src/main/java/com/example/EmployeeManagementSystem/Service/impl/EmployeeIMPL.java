@@ -79,14 +79,9 @@ public class EmployeeIMPL implements EmployeeService {
 
         Account account = employee.getAccount();
         if (account != null) {
-            if (employeeDTO.getEmail() != null && !employeeDTO.getEmail().isEmpty()) {
-                if(accountRepository.existsByEmail(employeeDTO.getEmail())){
-                    throw new RuntimeException("Employee already exists with this email: "+employeeDTO.getEmail());
-                }else {
-                    account.setEmail(employeeDTO.getEmail());
-                }
 
-            }
+            account.setEmail(employeeDTO.getEmail());
+
             if (employeeDTO.getPassword() != null && !employeeDTO.getPassword().isEmpty()) {
                 account.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
             }

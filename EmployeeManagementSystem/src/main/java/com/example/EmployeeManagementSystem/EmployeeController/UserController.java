@@ -43,7 +43,7 @@ public class UserController {
         return ResponseEntity.ok(employees);
     }
 
-    @PreAuthorize("hasRole('ROLE_EMPLOYEE')")
+    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_ADMIN') ")
     @GetMapping("/getEmployeeById/{employeeId}")
     public ResponseEntity<Optional<EmployeeDetailsDTO>> getEmployeeById(@PathVariable int employeeId) {
 
